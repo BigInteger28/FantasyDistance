@@ -105,8 +105,23 @@ func calculateTotalSeconds() *big.Int {
 }
 
 func distanceCovered(speed *big.Int, time *big.Int) {
-	units := new(big.Int).Mul(speed, time)
-	distance := convToNumber(units)
+	var grootte string
+	var units string
+	var indexGrootte int
+	fmt.Print("Grootte van het bedrag ", x1000, ": ")
+	fmt.Scanln(&grootte)
+	for i := range x1000 {
+		if grootte == x1000[i] {
+			indexGrootte = i
+			break
+		}
+	}
+	var multiplier = big.NewInt(1000)
+	multiplier.Exp(multiplier, big.NewInt(int64(indexGrootte)), nil)
+	fmt.Print("Units: ")
+	fmt.Scanln(&units)
+	tot := new(big.Int).Mul(speed, time)
+	//distance := convToNumber(units)
 	fmt.Println("Afstand afgelegd: ", formatBigNumber(distance.exactValue.String()), " = ", distance.thousands.String(), x1000text[distance.thousandsIndex], " = ", x1000[distance.thousandsIndex])
 	//CONVERSIE
 }
